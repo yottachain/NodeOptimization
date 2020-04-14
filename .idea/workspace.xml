@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="68660073-0311-45c6-aa68-fe53a23a5f6e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="ywIaidLt" />
+  </component>
+  <component name="ProjectId" id="1ZyUKNHZsqcVx5gyS953o7OxRll" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RunManager" selected="Go Test.TestOptmizer_Get in github.com/yottachain/NodeOptimization">
+    <configuration name="TestCounter_CurrentCount in github.com/yottachain/NodeOptimization/Counter" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="NodeOptimization" />
+      <working_directory value="$PROJECT_DIR$/Counter" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/yottachain/NodeOptimization/Counter" />
+      <pattern value="^TestCounter_CurrentCount$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestOptmizer_Get in github.com/yottachain/NodeOptimization" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="NodeOptimization" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/yottachain/NodeOptimization" />
+      <pattern value="^TestOptmizer_Get$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestOptmizer_Get in github.com/yottachain/NodeOptimization" />
+        <item itemvalue="Go Test.TestCounter_CurrentCount in github.com/yottachain/NodeOptimization/Counter" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="192" key="#Go_Modules_(vgo)" timestamp="1585822018727">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="192" key="#Go_Modules_(vgo)/0.0.1680.1050@0.0.1680.1050" timestamp="1585822018727" />
+    <state width="1638" height="221" key="GridCell.Tab.0.bottom" timestamp="1586858650049">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="221" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1586858650049" />
+    <state width="1638" height="221" key="GridCell.Tab.0.center" timestamp="1586858650046">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="221" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1586858650046" />
+    <state width="1638" height="221" key="GridCell.Tab.0.left" timestamp="1586858650044">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="221" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1586858650044" />
+    <state width="1638" height="221" key="GridCell.Tab.0.right" timestamp="1586858650047">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="221" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1586858650047" />
+    <state width="1638" height="281" key="GridCell.Tab.1.bottom" timestamp="1585827272114">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1585827272114" />
+    <state width="1638" height="281" key="GridCell.Tab.1.center" timestamp="1585827272111">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1585827272111" />
+    <state width="1638" height="281" key="GridCell.Tab.1.left" timestamp="1585827272110">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1585827272110" />
+    <state width="1638" height="281" key="GridCell.Tab.1.right" timestamp="1585827272113">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="281" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1585827272113" />
+    <state x="349" y="164" key="SettingsEditor" timestamp="1585822474938">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1585822474938" />
+    <state x="428" y="256" width="824" height="538" key="find.popup" timestamp="1585818672855">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="428" y="256" width="824" height="538" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1585818672855" />
+  </component>
+</project>
