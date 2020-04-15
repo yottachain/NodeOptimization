@@ -1,12 +1,15 @@
 package optimizer
 
 import (
+	"context"
 	counter "github.com/yottachain/NodeOptimization/Counter"
+	"time"
 )
 
 type Optmizer struct {
 	*counter.Counter
 	GetScore func(row counter.NodeCountRow) int64
+	ResetInterval time.Duration
 }
 
 type ResRow struct {
@@ -44,7 +47,6 @@ func defaultGetScore(row counter.NodeCountRow) int64 {
 }
 
 func (opt *Optmizer)Get(ids ...string) ResRowList{
-
 	res := make([]ResRow,0)
 
 	for k,v:= range opt.CurrentCount(ids...) {
@@ -63,5 +65,25 @@ func (opt *Optmizer)Get2(ids...string)[]string{
 }
 
 func New()*Optmizer{
-	return &Optmizer{counter.NewCounter(4000),defaultGetScore}
+	return &Optmizer{counter.NewCounter(4000),defaultGetScore,time.Hour}
+}
+
+func(opt *Optmizer) Run(ctx context.Context){
+	go func() {
+		<-time.After(opt.ResetInterval)
+		opt.Reset()
+	}()
+
+	opt.Counter.Run(ctx)
+}
+
+func (opt *Optmizer)Reset(){
+
+	ls:=opt.Get().Sort()
+	opt.Counter.Reset()
+	max:=len(ls)
+	for k,v:=range ls{
+		ir:=counter.InRow{v.ID,max-k}
+		opt.Feedback(ir)
+	}
 }

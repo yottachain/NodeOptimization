@@ -119,6 +119,12 @@ func (counter *Counter)CurrentCount(ids ...string) map[string]NodeCountRow  {
 	counter.Lock()
 	defer counter.Unlock()
 
+	if len(ids)==0{
+		for k,_:=range counter.NodeCountTable{
+			ids = append(ids, k)
+		}
+	}
+
 	res := make(map[string]NodeCountRow)
 
 	for _,v:= range ids{
@@ -129,5 +135,11 @@ func (counter *Counter)CurrentCount(ids ...string) map[string]NodeCountRow  {
 		res[v]=nodeCountRow
 	}
 	return res
+}
+func(counter *Counter)Reset(){
+	counter.Lock()
+	defer counter.Unlock()
+
+	counter.NodeCountTable = make(map[string]NodeCountRow)
 }
 

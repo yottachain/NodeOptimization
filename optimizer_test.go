@@ -34,7 +34,7 @@ func TestOptmizer_Get(t *testing.T) {
 
 
 	//cancel()
-	time.Sleep(3*time.Second)
+	time.Sleep(5*time.Second)
 	ids := make([]string,0)
 	for i:=0;i<2000;i++{
 		ids=append(ids,fmt.Sprintf("id-%d",i))
