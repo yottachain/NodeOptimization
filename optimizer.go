@@ -2,6 +2,7 @@ package optimizer
 
 import (
 	"context"
+	"fmt"
 	counter "github.com/yottachain/NodeOptimization/Counter"
 	"time"
 )
@@ -56,6 +57,10 @@ func (opt *Optmizer)Get(ids ...string) ResRowList{
 	return res
 }
 func (opt *Optmizer)Get2(ids...string)[]string{
+	st:=time.Now()
+	defer func() {
+		fmt.Println("获取优选列表",time.Now().Sub(st).Milliseconds())
+	}()
 	ls:=opt.Get(ids...).Sort()
 	res :=make([]string,0)
 	for _,v :=range ls{
