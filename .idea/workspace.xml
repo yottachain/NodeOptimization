@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="68660073-0311-45c6-aa68-fe53a23a5f6e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Counter/counter.go" beforeDir="false" afterPath="$PROJECT_DIR$/Counter/counter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/optimizer.go" beforeDir="false" afterPath="$PROJECT_DIR$/optimizer.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,9 +116,9 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1585822474938" />
-    <state x="428" y="256" width="824" height="538" key="find.popup" timestamp="1585818672855">
+    <state x="428" y="256" width="824" height="538" key="find.popup" timestamp="1587723296726">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="428" y="256" width="824" height="538" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1585818672855" />
+    <state x="428" y="256" width="824" height="538" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1587723296726" />
   </component>
 </project>

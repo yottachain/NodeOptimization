@@ -67,12 +67,12 @@ func (counter *Counter)Run(ctx context.Context){
 }
 
 func (counter *Counter)inOne(){
-	counter.Lock()
-	defer counter.Unlock()
 
 	// 根据传入操作状态给各个操作状态计次
 	row:=<-counter.InQueue
 
+	counter.Lock()
+	defer counter.Unlock()
 	nodeCountRow,ok:=counter.NodeCountTable[row.ID]
 	if !ok {
 		nodeCountRow = make(NodeCountRow)
@@ -137,9 +137,6 @@ func (counter *Counter)CurrentCount(ids ...string) map[string]NodeCountRow  {
 	return res
 }
 func(counter *Counter)Reset(){
-	counter.Lock()
-	defer counter.Unlock()
-
 	counter.NodeCountTable = make(map[string]NodeCountRow)
 }
 

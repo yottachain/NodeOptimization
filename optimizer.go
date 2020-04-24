@@ -8,7 +8,7 @@ import (
 )
 
 type Optmizer struct {
-	*counter.Counter
+	counter *counter.Counter
 	GetScore func(row counter.NodeCountRow) int64
 	ResetInterval time.Duration
 }
@@ -35,7 +35,7 @@ func (rrl ResRowList)Sort()ResRowList{
 }
 
 func (opt *Optmizer)Feedback(row counter.InRow){
-	opt.PushRow(row)
+	opt.counter.PushRow(row)
 }
 
 func defaultGetScore(row counter.NodeCountRow) int64 {
@@ -50,7 +50,7 @@ func defaultGetScore(row counter.NodeCountRow) int64 {
 func (opt *Optmizer)Get(ids ...string) ResRowList{
 	res := make([]ResRow,0)
 
-	for k,v:= range opt.CurrentCount(ids...) {
+	for k,v:= range opt.counter.CurrentCount(ids...) {
 		res = append(res,ResRow{k,opt.GetScore(v)})
 	}
 
@@ -79,13 +79,17 @@ func(opt *Optmizer) Run(ctx context.Context){
 	//	opt.Reset()
 	//}()
 
-	opt.Counter.Run(ctx)
+	opt.counter.Run(ctx)
+}
+
+func (opt *Optmizer)CurrentCount(ids ...string) map[string]counter.NodeCountRow  {
+	return opt.counter.CurrentCount(ids...)
 }
 
 func (opt *Optmizer)Reset(){
 
 	ls:=opt.Get().Sort()
-	opt.Counter.Reset()
+	opt.counter.Reset()
 	max:=len(ls)
 	for k,v:=range ls{
 		ir:=counter.InRow{v.ID,max-k}
