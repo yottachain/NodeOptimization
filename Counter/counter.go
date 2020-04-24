@@ -7,7 +7,7 @@ import (
 
 type NodeCountRow map[int]int64
 
-type CountRowTable sync.Map
+type CountRowTable map[string]NodeCountRow
 
 type InRow struct {
 	ID string
@@ -16,7 +16,7 @@ type InRow struct {
 
 // 计数器，用于统计各种状态次数，并归档历史数据
 type Counter struct {
-	NodeCountTable map[string]NodeCountRow
+	NodeCountTable sync.Map
 	InQueue chan InRow
 	//// 归档队列
 	//ARCountTable map[string][]NodeCountRow
@@ -24,13 +24,11 @@ type Counter struct {
 	//ARInterval time.Duration
 	//// 最大归档长度
 	//ARMax int
-
-	sync.RWMutex
 }
 
 func NewCounter(inQueueLen uint) *Counter {
 	o := Counter{
-		make(map[string]NodeCountRow),
+		sync.Map{},
 		// 同时最大处理请求次数
 		make(chan InRow,inQueueLen),
 		//make(map[string][]NodeCountRow),
@@ -38,7 +36,6 @@ func NewCounter(inQueueLen uint) *Counter {
 		//time.Minute*5,
 		//// 默认最大归档55分钟
 		//11,
-		sync.RWMutex{},
 	}
 	return &o
 }
@@ -70,15 +67,11 @@ func (counter *Counter)inOne(){
 
 	// 根据传入操作状态给各个操作状态计次
 	row:=<-counter.InQueue
+	ac,_:=counter.NodeCountTable.LoadOrStore(row.ID,make(NodeCountRow))
+	nodeCountRow := ac.(NodeCountRow)
 
-	counter.Lock()
-	defer counter.Unlock()
-	nodeCountRow,ok:=counter.NodeCountTable[row.ID]
-	if !ok {
-		nodeCountRow = make(NodeCountRow)
-	}
 	nodeCountRow[row.Status]=nodeCountRow[row.Status]+1
-	counter.NodeCountTable[row.ID]=nodeCountRow
+	counter.NodeCountTable.Store(row.ID,nodeCountRow)
 }
 
 //func (counter *Counter)ar(ctx context.Context){
@@ -116,27 +109,17 @@ func (counter *Counter)inOne(){
 
 // 返回现有计次状态，id为空返回所有
 func (counter *Counter)CurrentCount(ids ...string) map[string]NodeCountRow  {
-	counter.Lock()
-	defer counter.Unlock()
-
-	if len(ids)==0{
-		for k,_:=range counter.NodeCountTable{
-			ids = append(ids, k)
-		}
-	}
 
 	res := make(map[string]NodeCountRow)
 
 	for _,v:= range ids{
-		nodeCountRow,ok:=counter.NodeCountTable[v]
-		if !ok {
-			nodeCountRow=make(NodeCountRow)
-		}
-		res[v]=nodeCountRow
+		ac,_:=counter.NodeCountTable.LoadOrStore(v,make(NodeCountRow))
+		res[v]=ac.(NodeCountRow)
 	}
 	return res
 }
+
 func(counter *Counter)Reset(){
-	counter.NodeCountTable = make(map[string]NodeCountRow)
+	counter.NodeCountTable = sync.Map{}
 }
 
