@@ -70,14 +70,14 @@ func (opt *Optmizer)Get2(ids...string)[]string{
 }
 
 func New()*Optmizer{
-	return &Optmizer{counter.NewCounter(4000),defaultGetScore,time.Hour}
+	return &Optmizer{counter.NewCounter(4000),defaultGetScore,time.Hour*3}
 }
 
 func(opt *Optmizer) Run(ctx context.Context){
-	go func() {
-		<-time.After(opt.ResetInterval)
-		opt.Reset()
-	}()
+	//go func() {
+	//	<-time.After(opt.ResetInterval)
+	//	opt.Reset()
+	//}()
 
 	opt.Counter.Run(ctx)
 }
