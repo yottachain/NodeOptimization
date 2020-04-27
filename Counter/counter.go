@@ -12,6 +12,7 @@ type CountRowTable map[string]NodeCountRow
 type InRow struct {
 	ID string
 	Status int
+	DelayTimes int32
 }
 
 // 计数器，用于统计各种状态次数，并归档历史数据
@@ -69,7 +70,8 @@ func (counter *Counter)inOne(){
 	row:=<-counter.InQueue
 	ac,_:=counter.NodeCountTable.LoadOrStore(row.ID,make(NodeCountRow))
 	nodeCountRow := ac.(NodeCountRow)
-
+	totalDelay := float64(nodeCountRow[2]*(nodeCountRow[0] + nodeCountRow[1]))+ float64(row.DelayTimes)
+	nodeCountRow[2] =int64(totalDelay/float64(nodeCountRow[0] + nodeCountRow[1]))
 	nodeCountRow[row.Status]=nodeCountRow[row.Status]+1
 	counter.NodeCountTable.Store(row.ID,nodeCountRow)
 }
