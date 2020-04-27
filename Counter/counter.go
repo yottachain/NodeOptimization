@@ -12,7 +12,7 @@ type CountRowTable map[string]NodeCountRow
 type InRow struct {
 	ID string
 	Status int
-	DelayTimes int32
+	DelayTimes int64
 }
 
 // 计数器，用于统计各种状态次数，并归档历史数据
