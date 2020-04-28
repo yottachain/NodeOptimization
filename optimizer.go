@@ -87,12 +87,11 @@ func (opt *Optmizer)CurrentCount(ids ...string) map[string]counter.NodeCountRow 
 }
 
 func (opt *Optmizer)Reset(){
-
-	ls:=opt.Get().Sort()
+	//ls:=opt.Get().Sort()
 	opt.counter.Reset()
-	max:=len(ls)
-	for k,v:=range ls{
-		ir:=counter.InRow{v.ID,max-k}
-		opt.Feedback(ir)
-	}
+	//max:=len(ls)
+	//for k,v:=range ls{
+		//ir:=counter.InRow{v.ID,max-k}
+		//opt.Feedback(ir)
+	//}
 }
