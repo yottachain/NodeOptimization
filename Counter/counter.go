@@ -19,6 +19,7 @@ type InRow struct {
 type Counter struct {
 	NodeCountTable sync.Map
 	InQueue chan InRow
+	mtx sync.RWMutex
 	//// 归档队列
 	//ARCountTable map[string][]NodeCountRow
 	//// 归档间隔
@@ -32,6 +33,7 @@ func NewCounter(inQueueLen uint) *Counter {
 		sync.Map{},
 		// 同时最大处理请求次数
 		make(chan InRow,inQueueLen),
+		sync.RWMutex{},
 		//make(map[string][]NodeCountRow),
 		//// 默认5分钟归档一次
 		//time.Minute*5,
@@ -68,7 +70,9 @@ func (counter *Counter)inOne(){
 
 	// 根据传入操作状态给各个操作状态计次
 	row:=<-counter.InQueue
+	counter.mtx.RLock()
 	ac,_:=counter.NodeCountTable.LoadOrStore(row.ID,make(NodeCountRow))
+	counter.mtx.RUnlock()
 	nodeCountRow := ac.(NodeCountRow)
 
 	totalTiems := nodeCountRow[0] + nodeCountRow[1]
@@ -78,7 +82,7 @@ func (counter *Counter)inOne(){
 	totalDelay := float64(nodeCountRow[2]*(totalTiems))+ float64(row.DelayTimes)
 	nodeCountRow[2] =int64(totalDelay/float64(totalTiems))
 	nodeCountRow[row.Status]=nodeCountRow[row.Status]+1
-	counter.NodeCountTable.Store(row.ID,nodeCountRow)
+	counter.NodeCountTable.Store(row.ID, nodeCountRow)
 }
 
 //func (counter *Counter)ar(ctx context.Context){
@@ -120,13 +124,17 @@ func (counter *Counter)CurrentCount(ids ...string) map[string]NodeCountRow  {
 	res := make(map[string]NodeCountRow)
 
 	for _,v:= range ids{
+		counter.mtx.RLock()
 		ac,_:=counter.NodeCountTable.LoadOrStore(v,make(NodeCountRow))
+		counter.mtx.RUnlock()
 		res[v]=ac.(NodeCountRow)
 	}
 	return res
 }
 
 func(counter *Counter)Reset(){
+	counter.mtx.Lock()
 	counter.NodeCountTable = sync.Map{}
+	counter.mtx.Unlock()
 }
 
