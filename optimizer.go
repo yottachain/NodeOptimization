@@ -56,6 +56,8 @@ func (opt *Optmizer)Get2(ids...string)[]string{
 	defer func() {
 		fmt.Println("获取优选列表",time.Now().Sub(st).Milliseconds())
 	}()
+
+	opt.counter.Calc_score(ids...)
 	ls:=opt.Get(ids...).Sort()
 	res :=make([]string,0)
 	for _,v :=range ls{
