@@ -39,12 +39,7 @@ func (opt *Optmizer)Feedback(row counter.InRow){
 }
 
 func defaultGetScore(row counter.NodeCountRow) int64 {
-	var w1 int64 = 2
-	var w2 int64 = -1
-	if (row[0]+row[1])==0 {
-		return 500
-	}
-	return row[0] * w1 + row[1]* w2
+	return row.Score
 }
 
 func (opt *Optmizer)Get(ids ...string) ResRowList{

@@ -25,7 +25,7 @@ func TestCounter_CurrentCount(t *testing.T) {
 			} else {
 				status = 0
 			}
-			c.PushRow(InRow{fmt.Sprintf("id-%d",id),status})
+			c.PushRow(InRow{fmt.Sprintf("id-%d",id),status, 1000})
 			time.After(time.Microsecond * 50)
 		}
 	}()
@@ -34,6 +34,6 @@ func TestCounter_CurrentCount(t *testing.T) {
 
 	//cancel()
 	time.Sleep(3*time.Second)
-	c.CurrentCount().Print()
+	//c.CurrentCount().Print()
 	defer cancel()
 }

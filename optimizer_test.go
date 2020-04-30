@@ -26,7 +26,7 @@ func TestOptmizer_Get(t *testing.T) {
 			} else {
 				status = 0
 			}
-			o.Feedback(counter.InRow{fmt.Sprintf("id-%d",id),status})
+			o.Feedback(counter.InRow{fmt.Sprintf("id-%d",id),status, 1000})
 			time.After(time.Microsecond * 50)
 		}
 	}()
